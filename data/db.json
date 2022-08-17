@@ -1,0 +1,17 @@
+{
+    "users": [
+        {
+            "userID": 1,
+            "username": "User1",
+            "email": "a@a.a",
+            "password": "password",
+            "list": ""
+        }
+    ],
+    "anime": [
+        {"title": "Love Live! School Idol Project", "status": "Seen", "id": 1},
+        {"title": "Love Live! Sunshine!", "status": "Seen", "id": 2},
+        {"title": "Love Live! Nijigasaki Gakuen", "status": "Seen", "id": 3},
+        {"title": "Love Live! Superstar!!!", "status": "Not Seen", "id": 4}
+    ]
+}

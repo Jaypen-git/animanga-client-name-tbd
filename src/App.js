@@ -11,13 +11,19 @@ const App = () => {
     }
 
     useEffect(() => {
-        console.log('use effect ran');
+        fetch('http://localhost:8000/anime')
+            .then(res =>{
+                return res.json()
+            })
+            .then(data => {
+                console.log(data);
+            })
     }, [])
 
     return (
         <div className="App">
             <Header />
-            <Results animeList={animeList} title="All Results" handleDelete={handleDelete}/>
+            {/* <Results animeList={animeList} title="All Results" handleDelete={handleDelete}/> */}
         </div>
      );
 }
