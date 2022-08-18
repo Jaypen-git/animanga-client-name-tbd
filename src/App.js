@@ -1,6 +1,5 @@
 import Header from "./Header";
 import Results from "./Results";
-import { useEffect, useState } from "react";
 import useFetch from "./useFetch";
 
 const App = () => {
