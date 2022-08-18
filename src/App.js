@@ -4,26 +4,34 @@ import { useEffect, useState } from "react";
 
 const App = () => {
     const [animeList, setAnimeList] = useState(null);
-
-    const handleDelete = (id) => {
-        let newList = animeList.filter(anime => anime.id !== id);
-        setAnimeList(newList);
-    }
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         fetch('http://localhost:8000/anime')
             .then(res =>{
+                if (!res.ok) {
+                    throw Error("couldn't fetch the data");
+                }
                 return res.json()
             })
             .then(data => {
-                console.log(data);
+                setAnimeList(data);
+                setIsLoading(false);
+                setError(null);
             })
+            .catch(err => {
+                setError(err.message);
+                setIsLoading(false);
+            });
     }, [])
 
     return (
         <div className="App">
             <Header />
-            {/* <Results animeList={animeList} title="All Results" handleDelete={handleDelete}/> */}
+            { error && <div> {error} </div>}
+            { isLoading && <div>Loading...</div>}
+            { animeList && <Results animeList={animeList} title="All Results" />}
         </div>
      );
 }
