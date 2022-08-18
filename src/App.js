@@ -1,30 +1,10 @@
 import Header from "./Header";
 import Results from "./Results";
 import { useEffect, useState } from "react";
+import useFetch from "./useFetch";
 
 const App = () => {
-    const [animeList, setAnimeList] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        fetch('http://localhost:8000/anime')
-            .then(res =>{
-                if (!res.ok) {
-                    throw Error("couldn't fetch the data");
-                }
-                return res.json()
-            })
-            .then(data => {
-                setAnimeList(data);
-                setIsLoading(false);
-                setError(null);
-            })
-            .catch(err => {
-                setError(err.message);
-                setIsLoading(false);
-            });
-    }, [])
+    let {data: animeList, isLoading, error} = useFetch('http://localhost:8000/anime');
 
     return (
         <div className="App">
