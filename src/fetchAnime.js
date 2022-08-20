@@ -1,13 +1,13 @@
 const fetchAnime = async (anime) => {
-    let request = await fetch(`https://api.jikan.moe/v4/anime?q=${anime}`);
+    let response = await fetch(`https://api.jikan.moe/v4/anime?q=${anime}`);
 
-    if (request.status !== 200) {
-        throw new Error('Could not fetch the data');
+    if (!response.ok) {
+        throw Error('Could not fetch the data');
     }
 
-    const response = await request.json();
+    const data = await response.json();
 
-    return response;
+    return data;
 }
 
 export default fetchAnime;
