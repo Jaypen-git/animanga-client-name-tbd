@@ -1,17 +1,21 @@
 import Header from "./Header";
-import Results from "./Results";
-import useFetch from "./useFetch";
+import Home from "./Home";
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import Nav from "./Nav";
 
 const App = () => {
-    let {data: animeList, isLoading, error} = useFetch('http://localhost:8000/anime');
-
     return (
-        <div className="App">
-            <Header />
-            { error && <div> {error} </div>}
-            { isLoading && <div>Loading...</div>}
-            { animeList && <Results animeList={animeList} title="All Results" />}
-        </div>
+        <Router>
+            <div className="App">
+                <Header />
+                <Nav />
+                <div className="content">
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                    </Routes>
+                </div>
+            </div>
+        </Router>
      );
 }
  
